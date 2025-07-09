@@ -18,10 +18,6 @@ struct FriendList: View {
                 Text(friend.name)
             }
         }
-        .task {
-            context.insert(Friend(name: "Tom"))
-            context.insert(Friend(name: "John"))
-        }
     }
 }
 
