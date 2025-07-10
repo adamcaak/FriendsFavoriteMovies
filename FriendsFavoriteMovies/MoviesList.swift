@@ -11,11 +11,23 @@ import SwiftData
 struct MoviesList: View {
     @Query(sort: \Movies.title) private var movies: [Movies]
     @Environment(\.modelContext) private var context
+    
     var body: some View {
-        List {
-            ForEach(movies) { movie in
-                Text(movie.title)
+        NavigationSplitView {
+            List {
+                ForEach(movies) { movie in
+                    NavigationLink(movie.title) {
+                        Text("Detail view for \(movie.title)")
+                            .navigationTitle("Movie")
+                            .navigationBarTitleDisplayMode(.inline)
+                    }
+                }
             }
+            .navigationTitle("Movies")
+        } detail: {
+             Text("Select a movie")
+                .navigationTitle("Movie")
+                .navigationBarTitleDisplayMode(.inline)
         }
     }
 }
