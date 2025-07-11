@@ -16,9 +16,13 @@ struct MoviesDetail: View {
                 .autocorrectionDisabled()
             DatePicker("Release Date", selection: $movies.releaseDate)
         }
+        .navigationTitle("Movie")
+        .navigationBarTitleDisplayMode(.inline)
     }
 }
 
 #Preview {
-    MoviesDetail(movies: SampleData.shared.movies)
+    NavigationStack {
+        MoviesDetail(movies: SampleData.shared.movies)
+    }
 }
