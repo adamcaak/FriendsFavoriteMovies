@@ -1,5 +1,5 @@
 //
-//  FriendDetail.swift
+//  MoviesDetail.swift
 //  FriendsFavoriteMovies
 //
 //  Created by Łukasz Adamczak on 11/07/2025.
@@ -7,17 +7,17 @@
 
 import SwiftUI
 
-struct FriendDetail: View {
-    @Bindable var friend: Friend
+struct MoviesDetail: View {
+    @Bindable var movies: Movies
     
     var body: some View {
         Form {
-            TextField("Name:", text: $friend.name)
+            TextField("Name:", text: $movies.title)
                 .autocorrectionDisabled()
         }
     }
 }
 
 #Preview {
-    FriendDetail(friend: SampleData.shared.friend)
+    MoviesDetail(movies: SampleData.shared.movies)
 }
