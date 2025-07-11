@@ -14,6 +14,7 @@ struct MoviesDetail: View {
         Form {
             TextField("Name:", text: $movies.title)
                 .autocorrectionDisabled()
+            DatePicker("Release Date", selection: $movies.releaseDate)
         }
     }
 }
