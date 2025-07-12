@@ -22,11 +22,20 @@ struct FriendList: View {
                 }
             }
             .navigationTitle("Friends")
+            .toolbar {
+                ToolbarItem {
+                    Button("Add Friend", systemImage: "plus", action: addFriend)
+                }
+            }
         } detail: {
             Text("Select a Friend")
                 .navigationTitle("Friend")
                 .navigationBarTitleDisplayMode(.inline)
         }
+    }
+    
+    private func addFriend() {
+        context.insert(Friend(name: "New Friend"))
     }
 }
 
