@@ -9,6 +9,8 @@ import SwiftUI
 
 struct MoviesDetail: View {
     @Bindable var movies: Movies
+    @Environment(\.dismiss) private var dismiss
+    @Environment(\.modelContext) private var contenxt
     
     var body: some View {
         Form {
@@ -18,6 +20,19 @@ struct MoviesDetail: View {
         }
         .navigationTitle("Movie")
         .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            ToolbarItem(placement: .confirmationAction) {
+                Button("Save") {
+                    dismiss()
+                }
+            }
+            ToolbarItem(placement: .cancellationAction) {
+                Button("Cancel") {
+                    contenxt.delete(movies)
+                    dismiss()
+                }
+            }
+        }
     }
 }
 
