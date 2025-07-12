@@ -26,6 +26,9 @@ struct FriendList: View {
                 ToolbarItem {
                     Button("Add Friend", systemImage: "plus", action: addFriend)
                 }
+                ToolbarItem(placement: .topBarTrailing) {
+                    EditButton()
+                }
             }
         } detail: {
             Text("Select a Friend")
@@ -36,6 +39,12 @@ struct FriendList: View {
     
     private func addFriend() {
         context.insert(Friend(name: "New Friend"))
+    }
+    
+    private func removeFriend(indexes: IndexSet) {
+        for index in indexes {
+            context.delete(friends[index])
+        }
     }
 }
 
