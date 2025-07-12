@@ -12,6 +12,7 @@ struct FriendsFavoriteMoviesApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .modelContainer(for: [Movies.self, Friend.self])
         }
     }
 }
