@@ -20,11 +20,15 @@ struct MoviesList: View {
                         MoviesDetail(movies: movie)
                     }
                 }
+                .onDelete(perform: deleteMovie(indexes:))
             }
             .navigationTitle("Movies")
             .toolbar {
                 ToolbarItem {
                     Button("Add movie", systemImage: "plus", action: addMovie)
+                }
+                ToolbarItem(placement: .topBarTrailing) {
+                    EditButton()
                 }
             }
         } detail: {
@@ -36,6 +40,12 @@ struct MoviesList: View {
     
     private func addMovie() {
         context.insert(Movies(title: "New Movie", releaseDate: .now))
+    }
+    
+    private func deleteMovie(indexes: IndexSet) {
+        for index in indexes {
+            context.delete(movies[index])
+        }
     }
 }
 
