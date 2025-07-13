@@ -26,11 +26,9 @@ struct FriendDetail: View {
         Form {
             TextField("Name:", text: $friend.name)
                 .autocorrectionDisabled()
-            
-            DatePicker("Favorite Movie", selection: $friend.favoriteMovie) {
+            Picker("Favorite Movie", selection: $friend.favoriteMovie) {
                 ForEach(movies) { movie in
                         Text(movie.title)
-                        .tag(movie)
                 }
             }
         }
@@ -57,12 +55,13 @@ struct FriendDetail: View {
 #Preview {
     NavigationStack {
         FriendDetail(friend: SampleData.shared.friend)
-            .modelContainer(SampleData.shared.modelContainer)
     }
+    .modelContainer(SampleData.shared.modelContainer)
 }
 
 #Preview("New Friend") {
     NavigationStack {
         FriendDetail(friend: SampleData.shared.friend, isNew: true)
     }
+    .modelContainer(SampleData.shared.modelContainer)
 }
