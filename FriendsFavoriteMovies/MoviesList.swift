@@ -21,7 +21,6 @@ struct MoviesList: View {
     }
     
     var body: some View {
-        NavigationSplitView {
             List {
                 ForEach(movies) { movie in
                     NavigationLink(movie.title) {
@@ -45,12 +44,6 @@ struct MoviesList: View {
                 }
                 .interactiveDismissDisabled()
             }
-            
-        } detail: {
-             Text("Select a movie")
-                .navigationTitle("Movie")
-                .navigationBarTitleDisplayMode(.inline)
-        }
     }
     
     private func addMovie() {
