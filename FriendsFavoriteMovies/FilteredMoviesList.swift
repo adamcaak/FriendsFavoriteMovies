@@ -8,8 +8,17 @@
 import SwiftUI
 
 struct FilteredMoviesList: View {
+    @State private var searchText = ""
+    
     var body: some View {
-        MoviesList()
+        NavigationSplitView {
+            MoviesList(titleFilter: searchText)
+                .searchable(text: $searchText)
+        } detail: {
+            Text("Select a movie")
+                .navigationTitle("Movies")
+                .navigationBarTitleDisplayMode(.inline)
+        }
     }
 }
 
