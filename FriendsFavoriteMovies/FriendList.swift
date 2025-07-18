@@ -71,6 +71,8 @@ struct FriendList: View {
 }
 
 #Preview("Empty List") {
-    FriendList()
-        .modelContainer(for: Friend.self, inMemory: true)
+    NavigationStack {
+        MoviesList()
+            .modelContainer(for: Movies.self, inMemory: true)
+    }
 }

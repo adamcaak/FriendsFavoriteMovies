@@ -21,14 +21,20 @@ struct MoviesList: View {
     }
     
     var body: some View {
-            List {
-                ForEach(movies) { movie in
-                    NavigationLink(movie.title) {
-                        MoviesDetail(movies: movie)
+        Group {
+            if !movies.isEmpty {
+                List {
+                    ForEach(movies) { movie in
+                        NavigationLink(movie.title) {
+                            MoviesDetail(movies: movie)
+                        }
                     }
+                    .onDelete(perform: deleteMovie(indexes:))
                 }
-                .onDelete(perform: deleteMovie(indexes:))
+            } else {
+                ContentUnavailableView("Add movie", systemImage: "film.stack")
             }
+        }
             .navigationTitle("Movies")
             .toolbar {
                 ToolbarItem {
@@ -65,9 +71,15 @@ struct MoviesList: View {
             .modelContainer(SampleData.shared.modelContainer)
     }
 }
+
 #Preview("Filtered") {
     NavigationStack {
         MoviesList(titleFilter: "tr")
             .modelContainer(SampleData.shared.modelContainer)
     }
+}
+
+#Preview("Empty Movies") {
+    MoviesList()
+        .modelContainer(for: Movies.self, inMemory: true)
 }
